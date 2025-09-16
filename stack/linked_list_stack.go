@@ -7,7 +7,7 @@ type node[T primitive] struct {
 
 type linkedListStack[T primitive] struct {
 	top   *node[T]
-	count int
+	count uint
 }
 
 func NewLinkedListStack[T primitive]() Stack[T] {
@@ -46,6 +46,6 @@ func (lls *linkedListStack[T]) Peek() (value T, err error) {
 	return lls.top.value, nil
 }
 
-func (lls *linkedListStack[T]) Count() int {
+func (lls *linkedListStack[T]) Count() uint {
 	return lls.count
 }

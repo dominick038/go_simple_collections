@@ -12,7 +12,7 @@ type Stack[T primitive] interface {
 	Push(value T)
 	Pop() (value T, err error)
 	Peek() (value T, err error)
-	Count() int
+	Count() uint
 }
 
 type StackEmptyError struct {

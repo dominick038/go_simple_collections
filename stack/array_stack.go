@@ -51,6 +51,6 @@ func (as *ArrayStack[T]) Peek() (value T, err error) {
 	return as.arr[as.count-1], nil
 }
 
-func (as *ArrayStack[T]) Count() (count int) {
-	return int(as.count)
+func (as *ArrayStack[T]) Count() (count uint) {
+	return as.count
 }
