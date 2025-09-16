@@ -3,7 +3,7 @@ package stack_test
 import (
 	"testing"
 
-	"windesheim.dominick038.com/stacksandqueues/stack"
+	"github.com/dominick038/go_simple_collections/stack"
 )
 
 func BenchmarkLinkedListStack_Push(b *testing.B) {
