@@ -1,7 +1,11 @@
 package stack
 
 type primitive interface {
-	~bool | ~int | ~int64 | ~float64 | ~string | ~rune
+	~bool |
+		~int | ~int8 | ~int16 | ~int32 | ~int64 |
+		~uint | ~uint8 | ~uint16 | ~uint32 | ~uint64 |
+		~float32 | ~float64 |
+		~string
 }
 
 type Stack[T primitive] interface {
