@@ -41,6 +41,9 @@ func (llq *linkedListQueue[T]) DeQueue() (value T, err error) {
 		return value, &QueueEmptyError{}
 	}
 
+	// The way this is done will have 12? hanging bytes
+	// but it avoids an extra if check, doesn't really matter too much but good to keep in mind
+	// If I am in the future confused why 12 bytes are hanging it is because back is not set to nil
 	result := llq.front
 	llq.front = result.next
 	llq.count--
