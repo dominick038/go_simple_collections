@@ -1,5 +1,7 @@
 package stack
 
+import "math"
+
 type ArrayStack[T primitive] struct {
 	arr      []T
 	capacity uint
@@ -22,6 +24,12 @@ func resizeArr[T primitive](arr []T, newCap uint) (newArr []T) {
 }
 
 func (as *ArrayStack[T]) Push(value T) {
+	// This is bad and does not work at all, needs fixing but lazy umu
+	// Should check if size == maxuint and also should check if capacity will overflow and then set to maxuint
+	if as.capacity == math.MaxUint {
+		panic("Stack exceeded capacity!!")
+	}
+
 	if as.capacity == as.count {
 		newCap := as.capacity * 2
 		as.arr = resizeArr(as.arr, newCap)
@@ -36,6 +44,9 @@ func (as *ArrayStack[T]) Pop() (value T, err error) {
 	if as.count == 0 {
 		return value, StackEmptyError{}
 	}
+
+	// Could do with a downsize check on pop?
+	// Doesn't matter too much but could be usefull, would be make and then copy to index
 
 	value = as.arr[as.count-1]
 	as.count--
