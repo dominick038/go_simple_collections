@@ -49,3 +49,7 @@ func (lls *linkedListStack[T]) Peek() (value T, err error) {
 func (lls *linkedListStack[T]) Count() uint {
 	return lls.count
 }
+
+func (lls *linkedListStack[T]) IsEmpty() bool {
+	return lls.count == 0
+}

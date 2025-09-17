@@ -2,7 +2,7 @@ package stack
 
 import "math"
 
-type ArrayStack[T primitive] struct {
+type arrayStack[T primitive] struct {
 	arr      []T
 	capacity uint
 	count    uint
@@ -10,7 +10,7 @@ type ArrayStack[T primitive] struct {
 
 func NewArrayStack[T primitive]() Stack[T] {
 	arr := make([]T, 32)
-	return &ArrayStack[T]{
+	return &arrayStack[T]{
 		arr:      arr,
 		capacity: 32,
 		count:    0,
@@ -23,7 +23,7 @@ func resizeArr[T primitive](arr []T, newCap uint) (newArr []T) {
 	return result
 }
 
-func (as *ArrayStack[T]) Push(value T) {
+func (as *arrayStack[T]) Push(value T) {
 	// This is bad and does not work at all, needs fixing but lazy umu
 	// Should check if size == maxuint and also should check if capacity will overflow and then set to maxuint
 	if as.capacity == math.MaxUint {
@@ -40,7 +40,7 @@ func (as *ArrayStack[T]) Push(value T) {
 	as.count++
 }
 
-func (as *ArrayStack[T]) Pop() (value T, err error) {
+func (as *arrayStack[T]) Pop() (value T, err error) {
 	if as.count == 0 {
 		return value, StackEmptyError{}
 	}
@@ -54,7 +54,7 @@ func (as *ArrayStack[T]) Pop() (value T, err error) {
 	return value, nil
 }
 
-func (as *ArrayStack[T]) Peek() (value T, err error) {
+func (as *arrayStack[T]) Peek() (value T, err error) {
 	if as.count == 0 {
 		return value, StackEmptyError{}
 	}
@@ -62,6 +62,10 @@ func (as *ArrayStack[T]) Peek() (value T, err error) {
 	return as.arr[as.count-1], nil
 }
 
-func (as *ArrayStack[T]) Count() (count uint) {
+func (as *arrayStack[T]) Count() (count uint) {
 	return as.count
+}
+
+func (lls *arrayStack[T]) IsEmpty() bool {
+	return lls.count == 0
 }

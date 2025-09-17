@@ -13,6 +13,7 @@ type Stack[T primitive] interface {
 	Pop() (value T, err error)
 	Peek() (value T, err error)
 	Count() uint
+	IsEmpty() bool
 }
 
 type StackEmptyError struct {
