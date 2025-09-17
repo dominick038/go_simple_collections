@@ -42,7 +42,7 @@ package main
 
 import (
 	"fmt"
-	"github.com/yourusername/go-collections/stack"
+	"github.com/dominick038/go-collections/stack"
 )
 
 func main() {
