@@ -75,4 +75,4 @@ Got an idea for a new collection? Wanna make my stack even stackier? Fork this r
 
 ## License (The Boring Bit)
 
-This project is licensed under the MIT License, because I’m chaotic but not *that* chaotic. Do whatever you want with it—just don’t blame me if your code starts singing show tunes at 3 a.m.
+This project is licensed under the MIT License, because I’m chaotic but not *that* chaotic. Do whatever you want with it just don’t blame me if your code starts singing show tunes at 3 a.m.
