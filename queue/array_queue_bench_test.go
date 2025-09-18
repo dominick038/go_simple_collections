@@ -6,16 +6,16 @@ import (
 	"github.com/dominick038/go_simple_collections/queue"
 )
 
-func BenchmarkLinkedListQueue_EnQueue(b *testing.B) {
-	q := queue.NewLinkedListQueue[int]()
+func BenchmarkArrayQueue_EnQueue(b *testing.B) {
+	q := queue.NewArrayQueue[int]()
 
 	for i := 0; b.Loop(); i++ {
 		q.EnQueue(i)
 	}
 }
 
-func BenchmarkLinkedListQueue_DeQueue(b *testing.B) {
-	q := queue.NewLinkedListQueue[int]()
+func BenchmarkArrayQueue_DeQueue(b *testing.B) {
+	q := queue.NewArrayQueue[int]()
 	for i := 0; i < b.N; i++ {
 		q.EnQueue(i)
 	}
@@ -30,8 +30,8 @@ func BenchmarkLinkedListQueue_DeQueue(b *testing.B) {
 	}
 }
 
-func BenchmarkLinkedListQueue_EnQueueDeQueue(b *testing.B) {
-	q := queue.NewLinkedListQueue[int]()
+func BenchmarkArrayQueue_EnQueueDeQueue(b *testing.B) {
+	q := queue.NewArrayQueue[int]()
 
 	for i := 0; b.Loop(); i++ {
 		q.EnQueue(i)

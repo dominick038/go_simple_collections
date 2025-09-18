@@ -20,6 +20,8 @@ func BenchmarkArrayStack_Pop(b *testing.B) {
 		s.Push(i)
 	}
 
+	b.ResetTimer()
+
 	for i := 0; i < b.N; i++ {
 		_, err := s.Pop()
 		if err != nil {
