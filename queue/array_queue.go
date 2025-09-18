@@ -27,7 +27,7 @@ func resizeArr[T primitive](arr []T, newCap uint) (newArr []T) {
 	// [1, 2, 6]
 	// F/B
 	// Enqueue(3)
-	// [3, 2, 6]
+	// [3, 2, 6, , , ]
 	//  F  B
 	// We now overwrote front Woops!
 	result := make([]T, newCap)
