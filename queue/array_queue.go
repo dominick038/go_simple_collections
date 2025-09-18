@@ -32,7 +32,7 @@ func (llq *arrayQueue[T]) EnQueue(value T) {
 		llq.capacity = newCap
 	}
 
-	// Babababooy this will explode the array bcs rly rly large like the other array implementation UwU
+	// Babababooy this will explode the array bcs rly rly large like the other array implementation
 	// But then again if your queue is anywhere close to this: 18446744073709551615 you have other problems
 
 	llq.arr[llq.back] = value
