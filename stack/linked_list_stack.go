@@ -18,6 +18,8 @@ func NewLinkedListStack[T primitive]() Stack[T] {
 }
 
 func (lls *linkedListStack[T]) Push(value T) {
+	// Need to check if count == maxuint here as well
+
 	newNode := &node[T]{
 		value: value,
 		next:  lls.top,

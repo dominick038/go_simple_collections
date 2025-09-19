@@ -25,6 +25,8 @@ func (llq *linkedListQueue[T]) EnQueue(value T) {
 		next:  nil,
 	}
 
+	// Need to check when count == maxuint here too
+
 	if llq.count == 0 {
 		llq.front = newNode
 		llq.back = newNode
