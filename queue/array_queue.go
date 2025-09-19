@@ -1,5 +1,7 @@
 package queue
 
+import "math"
+
 type arrayQueue[T primitive] struct {
 	arr      []T
 	front    uint
@@ -19,30 +21,34 @@ func NewArrayQueue[T primitive]() Queue[T] {
 	}
 }
 
-func resizeArr[T primitive](arr []T, newCap uint) (newArr []T) {
-	// This resize is bad bcs its circular
-	// [1, 2, ]
-	//  F    B
-	// Enqueue(6)
-	// [1, 2, 6]
-	// F/B
-	// Enqueue(3)
-	// [3, 2, 6, , , ]
-	//  F  B
-	// We now overwrote front Woops!
-	result := make([]T, newCap)
-	copy(result, arr)
-	return result
+func (llq *arrayQueue[T]) increaseCapacity() {
+	// Check if we overflow the capacity for some weird reason
+	newCap := llq.capacity * 2
+	if newCap < llq.capacity {
+		newCap = math.MaxUint
+	}
+	newArr := make([]T, newCap)
+
+	// Copy all elements from front to back into the new array
+	for i := uint(0); i < llq.count; i++ {
+		sourceIndex := (llq.front + i) % llq.capacity
+		newArr[i] = llq.arr[sourceIndex]
+	}
+
+	// Update the queue structure
+	llq.arr = newArr
+	llq.front = 0
+	llq.back = llq.count
+	llq.capacity = newCap
 }
 
 func (llq *arrayQueue[T]) EnQueue(value T) {
+	if llq.count == math.MaxUint {
+		panic("Error! Queue has reached max size, this very likely means there is an issue in your code!")
+	}
 
-	// Babababooy this will explode the array bcs rly rly large like the other array implementation
-	// But then again if your queue is anywhere close to this: 18446744073709551615 you have other problems
 	if llq.capacity == llq.count {
-		newCap := llq.capacity * 2
-		llq.arr = resizeArr(llq.arr, newCap)
-		llq.capacity = newCap
+		llq.increaseCapacity()
 	}
 
 	llq.arr[llq.back] = value
