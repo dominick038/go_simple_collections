@@ -29,11 +29,10 @@ func (llq *arrayQueue[T]) increaseCapacity() {
 	}
 	newArr := make([]T, newCap)
 
-	// Copy all elements from front to back into the new array
-	for i := uint(0); i < llq.count; i++ {
-		sourceIndex := (llq.front + i) % llq.capacity
-		newArr[i] = llq.arr[sourceIndex]
-	}
+	// When full, always copy in two parts since buffer is wrapped
+	firstPartSize := llq.capacity - llq.front
+	copy(newArr, llq.arr[llq.front:])                 // From front to end
+	copy(newArr[firstPartSize:], llq.arr[:llq.front]) // From start to front
 
 	// Update the queue structure
 	llq.arr = newArr
